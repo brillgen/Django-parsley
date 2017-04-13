@@ -30,6 +30,7 @@ class FieldTypeForm(forms.Form):
     topnav = forms.RegexField(regex="#[A-Fa-f0-9]{6}")
     topnav2 = forms.RegexField(regex=re.compile("#[a-z]+", re.IGNORECASE))
     some_num = forms.IntegerField(min_value=10, max_value=100)
+    amount = forms.DecimalField(max_digits=12, decimal_places=2, required=True, max_value=999999999999.99, min_value=-999999999999.99)
 
 
 @parsleyfy
@@ -70,6 +71,7 @@ class FormWithWidgets(forms.Form):
 class StudentModelForm(forms.ModelForm):
     class Meta:
         model = Student
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super(StudentModelForm, self).__init__(*args, **kwargs)
